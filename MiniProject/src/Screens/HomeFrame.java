@@ -42,6 +42,7 @@ public class HomeFrame extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         shapeTransitionButton = new javax.swing.JButton();
         colorTransitionButton = new javax.swing.JButton();
+        sizeTransitionButton = new javax.swing.JButton();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -153,25 +154,37 @@ public class HomeFrame extends javax.swing.JFrame {
             }
         });
 
+        sizeTransitionButton.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        sizeTransitionButton.setForeground(new java.awt.Color(255, 51, 153));
+        sizeTransitionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/size_32x32.png"))); // NOI18N
+        sizeTransitionButton.setText("Size Transition");
+        sizeTransitionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sizeTransitionButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(79, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(shapeTransitionButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(colorTransitionButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(79, Short.MAX_VALUE))
+                    .addComponent(colorTransitionButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sizeTransitionButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(13, Short.MAX_VALUE)
                 .addComponent(shapeTransitionButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(colorTransitionButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(sizeTransitionButton))
         );
 
         getContentPane().add(jPanel7, java.awt.BorderLayout.CENTER);
@@ -197,6 +210,11 @@ public class HomeFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         new ShapeTransitionFrame().setVisible(true);
     }//GEN-LAST:event_shapeTransitionButtonActionPerformed
+
+    private void sizeTransitionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sizeTransitionButtonActionPerformed
+        // TODO add your handling code here:
+        new SizeTransitionFrame().setVisible(true);
+    }//GEN-LAST:event_sizeTransitionButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -249,5 +267,6 @@ public class HomeFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton shapeTransitionButton;
+    private javax.swing.JButton sizeTransitionButton;
     // End of variables declaration//GEN-END:variables
 }

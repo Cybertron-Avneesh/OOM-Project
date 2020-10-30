@@ -17,6 +17,7 @@ public class ShapeTransitionFrame extends javax.swing.JFrame {
     int height, width;
     static DisplayPanel outputPanel = new DisplayPanel();
     Boolean isShapeTransitionStarted;
+    final Transition transition = Transition.SHAPE;
 
     /**
      * Creates new form ShapeTransitionFrame1
@@ -197,9 +198,9 @@ public class ShapeTransitionFrame extends javax.swing.JFrame {
         if (isShapeTransitionStarted) {
             outputPanel.stop();
             System.out.println("Stoped previous timer and starting again.");
-            outputPanel.setdetails("ShapeTransition", height, width, selectedColor);
+            outputPanel.setdetails(transition, height, width, selectedColor);
         } else {
-            outputPanel.setdetails("ShapeTransition", height, width, selectedColor);
+            outputPanel.setdetails(transition, height, width, selectedColor);
             System.out.println("Starting fresh timer.");
             isShapeTransitionStarted = true;
         }

@@ -5,26 +5,27 @@
  */
 package Screens;
 
+import java.awt.Color;
 import javax.swing.DefaultComboBoxModel;
 
 /**
  *
  * @author Cyb3rtr0N_4vn335H
  */
-public class ColorTransitionFrame extends javax.swing.JFrame {
-
+public class SizeTransitionFrame extends javax.swing.JFrame {
+    
+    Color selectedColor;
 //    String shape;
-    Shapes shapes;
-    int height, width;
     static DisplayPanel outputPanel = new DisplayPanel();
-    Boolean isColorTransitionStarted;
-    final Transition transition = Transition.COLOR;
+    Boolean isSizeTransitionStarted;
+    final Transition transition = Transition.SIZE;
+    Shapes shapes;
     /**
-     * Creates new form ColorTransitionFrame
+     * Creates new form SizeTransitionFrame
      */
-    public ColorTransitionFrame() {
+    public SizeTransitionFrame() {
         initComponents();
-        isColorTransitionStarted = false;
+        isSizeTransitionStarted = false;
     }
 
     /**
@@ -43,31 +44,25 @@ public class ColorTransitionFrame extends javax.swing.JFrame {
         stopButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jPanel11 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        heightSpinner = new javax.swing.JSpinner();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        widthSpinner = new javax.swing.JSpinner();
+        colorChooser = new javax.swing.JColorChooser();
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         shapeComboBox = new javax.swing.JComboBox(Shapes.values());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Color Transition Input");
 
         jLabel3.setFont(new java.awt.Font("Segoe Print", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 0, 204));
-        jLabel3.setText("Set inputs for Color Transition");
+        jLabel3.setText("Set inputs for Size Transition");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
+                .addContainerGap(180, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,65 +100,10 @@ public class ColorTransitionFrame extends javax.swing.JFrame {
 
         jPanel3.setLayout(new java.awt.BorderLayout());
 
-        jLabel6.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
-        jLabel6.setText("Height:");
-
-        heightSpinner.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        heightSpinner.setModel(new javax.swing.SpinnerNumberModel(50, null, null, 5));
-        heightSpinner.setMinimumSize(new java.awt.Dimension(500, 320));
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(heightSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(heightSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel4.add(jPanel11);
-
-        jLabel4.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
-        jLabel4.setText("Width:");
-
-        widthSpinner.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        widthSpinner.setModel(new javax.swing.SpinnerNumberModel(50, null, null, 5));
-        widthSpinner.setMinimumSize(new java.awt.Dimension(500, 320));
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(widthSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(widthSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel4.add(jPanel5);
+        colorChooser.setAutoscrolls(true);
+        colorChooser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        colorChooser.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jPanel4.add(colorChooser);
 
         jPanel3.add(jPanel4, java.awt.BorderLayout.PAGE_END);
 
@@ -188,30 +128,31 @@ public class ColorTransitionFrame extends javax.swing.JFrame {
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
 //        shape = shapeComboBox.getSelectedItem().toString();
-        height = Integer.parseInt(heightSpinner.getValue().toString());
-        width = Integer.parseInt(widthSpinner.getValue().toString());
-//        System.out.println("Shape: " + shape + "\n width: " + width + "\n height: " + height);
+        selectedColor = colorChooser.getColor();
+//        System.out.println("Shape: " + shape);
 
-        if (isColorTransitionStarted) {
+        if (isSizeTransitionStarted) {
             outputPanel.stop();
             System.out.println("Stoped previous timer and starting again.");
-            outputPanel.setdetails(transition, height, width, (Shapes)shapeComboBox.getSelectedItem());
+//            outputPanel.setdetails("ColorTransition", height, width, shape);
+            outputPanel.setDetails(transition, (Shapes)shapeComboBox.getSelectedItem(), selectedColor);
         } else {
-            outputPanel.setdetails(transition, height, width, (Shapes)shapeComboBox.getSelectedItem());
+//            outputPanel.setdetails("ColorTransition", height, width, shape);
+            outputPanel.setDetails(transition, (Shapes)shapeComboBox.getSelectedItem(), selectedColor);
             System.out.println("Starting fresh timer.");
-            isColorTransitionStarted = true;
+            isSizeTransitionStarted = true;
         }
     }//GEN-LAST:event_startButtonActionPerformed
+
+    private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
+        System.out.println("Stoping Size transition.");
+        outputPanel.stop();
+        isSizeTransitionStarted = false;
+    }//GEN-LAST:event_stopButtonActionPerformed
 
     private void shapeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shapeComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_shapeComboBoxActionPerformed
-
-    private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
-        System.out.println("Stoping color transition.");
-        outputPanel.stop();
-        isColorTransitionStarted = false;
-    }//GEN-LAST:event_stopButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,38 +171,35 @@ public class ColorTransitionFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ColorTransitionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SizeTransitionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ColorTransitionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SizeTransitionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ColorTransitionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SizeTransitionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ColorTransitionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SizeTransitionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new ColorTransitionFrame().setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new SizeTransitionFrame().setVisible(true);
+            }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JSpinner heightSpinner;
+    private javax.swing.JColorChooser colorChooser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JComboBox shapeComboBox;
     private javax.swing.JButton startButton;
     private javax.swing.JButton stopButton;
-    private javax.swing.JSpinner widthSpinner;
     // End of variables declaration//GEN-END:variables
 }

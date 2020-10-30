@@ -7,6 +7,7 @@ package Screens;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.util.Timer;
@@ -20,9 +21,11 @@ public class DisplayPanel extends JPanel {
 
     JFrame frame = new JFrame();
     int height, width;
-    String shape;
+//    String shape;
     Color color;
-    String transitionType;
+//    String transitionType;
+    Transition transition;
+    Shapes shapes;
     Timer timer;
 
     public DisplayPanel() {
@@ -34,18 +37,19 @@ public class DisplayPanel extends JPanel {
         frame.setVisible(true);
     }
 
-    public void setdetails(String transitionType, int height, int width, String shape) {
-        this.transitionType = transitionType;
+    public void setdetails(Transition transition, int height, int width, Shapes shapes) {
+//        this.transitionType = transitionType;
+        this.transition = transition;
         this.height = height;
         this.width = width;
-        this.shape = shape;
+        this.shapes = shapes;
         timer = new Timer();
         timer.schedule(new Taskscheduler(), 100, 1000);
     }
 
-    public void setdetails(String transitionType, int height, int width, Color color) {
-
-        this.transitionType = transitionType;
+    public void setdetails(Transition transition, int height, int width, Color color) {
+//        this.transitionType = transitionType;
+        this.transition = transition;
         this.height = height;
         this.width = width;
         this.color = color;
@@ -53,11 +57,19 @@ public class DisplayPanel extends JPanel {
         timer.schedule(new Taskscheduler(), 100, 1000);
     }
 
+    public void setDetails(Transition transition, Shapes shapes, Color color) {
+        this.transition = transition;
+        this.color = color;
+        this.shapes = shapes;
+        timer = new Timer();
+        timer.schedule(new Taskscheduler(), 100, 1000);
+    }
+
     @Override
     public void paint(Graphics graphics) {
-        if (transitionType != null) {
-            switch (transitionType) {
-                case "ColorTransition":
+        if (transition != null) {
+            switch (transition) {
+                case COLOR:
                     int r,
                      g,
                      b;
@@ -65,50 +77,81 @@ public class DisplayPanel extends JPanel {
                     g = (int) (Math.floor(Math.random() * 256));
                     b = (int) (Math.floor(Math.random() * 256));
                     graphics.setColor(new Color(r, g, b));
-                    switch (shape) {
-                        case "Oval":
-                            graphics.fillOval(50, 50, width, height);
-                            break;
-                        case "Triangle":
-                            int x[] = {50 + width / 2, 50, 50 + width,};
-                            int y[] = {50, 50 + height, 50 + height};
-                            graphics.fillPolygon(x, y, 3);
-                            break;
-                        case "Quadilateral":
-                            graphics.fillRect(50, 50, width, height);
-                            break;
-                        default:
-                            break;
-                    }
+                    drawGraphics(graphics);
+//                    switch (shape) {
+//                        case "Oval":
+//                            graphics.fillOval(50, 50, width, height);
+//                            break;
+//                        case "Triangle":
+//                            int x[] = {50 + width / 2, 50, 50 + width,};
+//                            int y[] = {50, 50 + height, 50 + height};
+//                            graphics.fillPolygon(x, y, 3);
+//                            break;
+//                        case "Quadilateral":
+//                            graphics.fillRect(50, 50, width, height);
+//                            break;
+//                        default:
+//                            break;
+//                    }
 
                     break;
 
-                case "ShapeTransition":
-                    int option;
-                    option = (int) (Math.floor(Math.random() * 3));
+                case SHAPE:
+//                    int option;
+//                    option = (int) (Math.floor(Math.random() * 3));
                     graphics.setColor(color);
-                    switch (option) {
-                        case 0:
-                            graphics.fillOval(50, 50, width, height);
-                            break;
-                        case 1:
-                            int x[] = {50 + width / 2, 50, 50 + width,};
-                            int y[] = {50, 50 + height, 50 + height};
-                            graphics.fillPolygon(x, y, 3);
-                            break;
-                        case 2:
-                            graphics.fillRect(50, 50, width, height);
-                            break;
-                        default:
-                            break;
-                    }
+                    shapes = Shapes.values()[new Random().nextInt(Shapes.values().length)];
+                    drawGraphics(graphics);
+//                    switch (option) {
+//                        case 0:
+//                            graphics.fillOval(50, 50, width, height);
+//                            break;
+//                        case 1:
+//                            int x[] = {50 + width / 2, 50, 50 + width,};
+//                            int y[] = {50, 50 + height, 50 + height};
+//                            graphics.fillPolygon(x, y, 3);
+//                            break;
+//                        case 2:
+//                            graphics.fillRect(50, 50, width, height);
+//                            break;
+//                        default:
+//                            break;
+//                    }
 
                     break;
+
+                case SIZE:
+                    height = (int) (Math.floor(Math.random() * 325));
+                    width = (int) (Math.floor(Math.random() * 325));
+                    graphics.setColor(color);
+                    drawGraphics(graphics);
+                    break;
+
                 default:
                     break;
             }
         }
 
+    }
+
+    private void drawGraphics(Graphics graphics) {
+        if (shapes != null) {
+            switch (shapes) {
+                case OVAL:
+                    graphics.fillOval(50, 50, width, height);
+                    break;
+                case TRIANGLE:
+                    int x[] = {50 + width / 2, 50, 50 + width,};
+                    int y[] = {50, 50 + height, 50 + height};
+                    graphics.fillPolygon(x, y, 3);
+                    break;
+                case QUADILATERAL:
+                    graphics.fillRect(50, 50, width, height);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     public void stop() {
